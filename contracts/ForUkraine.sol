@@ -50,7 +50,8 @@ contract Simulacra is ERC721, Ownable, ReentrancyGuard {
      *
      */
     function mint() external payable nonReentrant {
-        require(PUBLIC_SALE_PRICE >= msg.value, "Incorrect ETH value sent");
+        // Allow overpayment.
+        require(msg.value >= PUBLIC_SALE_PRICE, "Incorrect ETH value sent");
         _safeMint();
     }
 
